@@ -80,7 +80,64 @@ function orderAlphabetically(moviesArray) {
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) { }
+function turnHoursToMinutes(moviesArray) {
+    return moviesArray.map((movieElement) => {
+        const durationArray = movieElement.duration?.split(' ');
+        const hours = durationArray[0]?.includes('h') ? parseInt(durationArray[0]) : 0; // optional chaining
+        const minutes = durationArray[1]?.includes('min') ? parseInt(durationArray[1]) : 0;
+
+        const totalMinutes = hours * 60 + minutes;
+
+        return {
+            ...movieElement,
+            duration: totalMinutes,
+        }
+    });
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) {
+    if (!moviesArray.length) {
+        return null;
+    }
+
+    const yearsArray = moviesArray.map((moviesElement) => {
+        return moviesElement.year;
+    })
+    // Convert the array to a Set to remove duplicates
+    const uniqueSet = new Set(yearsArray);
+    // Convert the Set back to an array using the spread operator
+    const uniqueArray = [...uniqueSet];
+
+    const yearAvgArr = uniqueArray.map((year) => {
+        let count = 0;
+        const sumScore = moviesArray.reduce((accumulator, movieElement) => {
+            if (movieElement.score && movieElement.year === year) {
+                count++;
+                return accumulator + movieElement.score;
+
+            }
+            return accumulator + 0;
+        }, 0);
+
+        const averageScore = (sumScore / count);
+
+        return {
+            year: year,
+            averageScore: averageScore,
+        }
+
+    })
+    yearAvgArr.sort((a, b) => {
+        if (a.averageScore !== b.averageScore) {
+            return b.averageScore - a.averageScore;
+        }
+        return a.year - b.year;
+    });
+
+
+    return `The best year was ${yearAvgArr[0].year} with an average score of ${yearAvgArr[0].averageScore}`
+
+
+}

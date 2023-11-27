@@ -10,7 +10,7 @@ describe('Function "getAllDirectors"', () => {
 
   it('should return a new array, not update the original one', () => {
     const returnValue = getAllDirectors(movies);
-    expect(returnValue instanceof Array).toBe(true);        
+    expect(returnValue instanceof Array).toBe(true);
     expect(getAllDirectors(movies)).not.toEqual(movies);
   });
 
@@ -206,7 +206,7 @@ describe('Function "orderByYear"', () => {
   it('should return a new array, not mutate the original one', () => {
     const arr = [];
     const returnValue = orderByYear(arr);
-    expect(returnValue instanceof Array).toBe(true);    
+    expect(returnValue instanceof Array).toBe(true);
     expect(orderByYear(arr)).not.toBe(arr);
   });
 
@@ -249,7 +249,7 @@ describe('Function "orderAlphabetically"', () => {
     const arr = [{ title: 'xyz' }, { title: 'abc' }];
     const returnValue = orderAlphabetically(arr);
     expect(returnValue instanceof Array).toBe(true);
-    expect(orderByYear(arr)).not.toBe(arr);    
+    expect(orderByYear(arr)).not.toBe(arr);
   });
 
   it('should only return the title of the movies, each value should be a string', () => {
@@ -403,7 +403,7 @@ describe('Function "turnHoursToMinutes"', () => {
   it('should return a new array, not mutate the original one', () => {
     const returnValue = turnHoursToMinutes(movies);
     expect(returnValue instanceof Array).toBe(true);
-    expect(turnHoursToMinutes(movies)).not.toBe(movies);    
+    expect(turnHoursToMinutes(movies)).not.toBe(movies);
   });
 
   it('should return an array of movies with duration as a number', () => {
